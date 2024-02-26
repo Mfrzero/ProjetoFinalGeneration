@@ -27,7 +27,7 @@ namespace ProjetoFinalGeneration.Controllers
         {
             var postagem = await _postagemService.GetPostagemByIdAsync(id);
             if (postagem == null)
-                return NotFound();
+                return NotFound(new { message = "Postagem não encontrada"});
 
             return Ok(postagem);
         }
@@ -43,7 +43,7 @@ namespace ProjetoFinalGeneration.Controllers
         public async Task<ActionResult> UpdatePostagem(int id, Postagem postagem)
         {
             if (id != postagem.Id)
-                return BadRequest();
+                return BadRequest(new { message = "Postagem não encontrada"});
 
             await _postagemService.UpdatePostagemAsync(postagem);
             return NoContent();

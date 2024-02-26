@@ -27,7 +27,7 @@ namespace ProjetoFinalGeneration.Controllers
         {
             var tema = await _temaService.GetTemaByIdAsync(id);
             if (tema == null)
-                return NotFound();
+                return NotFound(new { message = "Tema não encontrado"});
 
             return Ok(tema);
         }
@@ -43,7 +43,7 @@ namespace ProjetoFinalGeneration.Controllers
         public async Task<ActionResult> UpdateTema(int id, Tema tema)
         {
             if (id != tema.Id)
-                return BadRequest();
+                return BadRequest(new { message = "Tema não encontrado"});
 
             await _temaService.UpdateTemaAsync(tema);
             return NoContent();

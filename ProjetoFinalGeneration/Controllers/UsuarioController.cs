@@ -31,7 +31,7 @@ namespace ProjetoFinalGeneration.Controllers
         {
             var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
             if (usuario == null)
-                return NotFound();
+                return NotFound(new { message = "Usuário não encontrado"});
 
             return Ok(usuario);
         }
@@ -52,7 +52,7 @@ namespace ProjetoFinalGeneration.Controllers
         public async Task<ActionResult> UpdateUsuario(int id, Usuario usuario)
         {
             if (id != usuario.Id)
-                return BadRequest();
+                return BadRequest(new {message = "Usuário não encontrado"});
 
             await _usuarioService.UpdateUsuarioAsync(usuario);
             return NoContent();
