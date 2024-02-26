@@ -23,14 +23,7 @@ namespace ProjetoFinalGeneration.Repository.Usuarios
 
         public async Task CreateUsuarioAsync(Usuario usuario)
         {
-            //if (_usuarioRepository.EmailUnico(usuario.Email)) {
-                await _usuarioRepository.CreateAsync(usuario);
-            //}
-            //else
-            //{
-            //    throw new InvalidOperationException("O e-mail já está em uso.");
-            //}
-            
+            await _usuarioRepository.CreateAsync(usuario);
         }
 
         public async Task UpdateUsuarioAsync(Usuario usuario)

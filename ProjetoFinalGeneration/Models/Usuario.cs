@@ -19,7 +19,5 @@ namespace ProjetoFinalGeneration.Models
         public string Email { get; set; }
         public string Foto { get; set; }
 
-        // Relacionamento com Postagem
-        //public List<Postagem>? Postagens { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace ProjetoFinalGeneration.Models
         [MinLength(10)]
         public string Texto { get; set; }
         public DateTime Data { get; set; }
-        // Relacionamentos com Usuario e Tema
         [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
         [ForeignKey("Tema")]
