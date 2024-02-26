@@ -13,6 +13,9 @@ namespace ProjetoFinalGeneration.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Usuario>()
+           .HasIndex(u => u.Email)
+           .IsUnique();
             ////// configurações adicionais, como chaves estrangeiras
             //modelBuilder.Entity<Usuario>()
             //    .HasMany(p => p.Postagens)

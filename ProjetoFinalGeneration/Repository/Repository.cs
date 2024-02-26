@@ -42,7 +42,9 @@ namespace ProjetoFinalGeneration.Repository
             _set.Remove(entity);
             await _context.SaveChangesAsync();
         }
-
-
+        public bool EmailUnico(string Email)
+        {
+            return !_context.Usuarios.Any(u => u.Email == Email);
+        }
     }
 }

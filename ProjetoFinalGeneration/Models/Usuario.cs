@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoFinalGeneration.Models
@@ -14,6 +15,7 @@ namespace ProjetoFinalGeneration.Models
         public string Nome { get; set; }
         [Required]
         [EmailAddress]
+        [Remote("IsEmailUnique", "User", ErrorMessage = "Email is already taken.")]
         public string Email { get; set; }
         public string Foto { get; set; }
 

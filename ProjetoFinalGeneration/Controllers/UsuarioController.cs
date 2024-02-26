@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjetoFinalGeneration.Data;
 using ProjetoFinalGeneration.Models;
 using ProjetoFinalGeneration.Repository.Usuarios;
 
@@ -9,10 +11,12 @@ namespace ProjetoFinalGeneration.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly ApplicationDbContext _rep;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, ApplicationDbContext rep)
         {
             _usuarioService = usuarioService;
+            _rep = rep;
         }
 
         [HttpGet]
@@ -35,7 +39,11 @@ namespace ProjetoFinalGeneration.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateUsuario(Usuario usuario)
         {
-
+            if (_rep.Usuarios.Any(u => u.Email == usuario.Email))
+            {
+                ModelState.AddModelError("Email", "Email deve ser único.");
+                return BadRequest(ModelState);
+            }
             await _usuarioService.CreateUsuarioAsync(usuario);
             return CreatedAtAction(nameof(GetUsuarioById), new { id = usuario.Id }, usuario);
         }
