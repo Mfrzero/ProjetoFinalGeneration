@@ -13,7 +13,5 @@ namespace ProjetoFinalGeneration.Models
         [MinLength(3)]
         public string Descricao { get; set; }
 
-        // Relacionamento com Postagem
-        //public List<Postagem> Postagens { get; set; }
     }
 }
